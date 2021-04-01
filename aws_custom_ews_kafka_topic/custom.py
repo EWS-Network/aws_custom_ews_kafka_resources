@@ -4,8 +4,11 @@
 
 """Definition of Custom::KafkaTopic."""
 
+from copy import deepcopy
 from troposphere.validators import positive_integer, boolean
 from troposphere.cloudformation import AWSCustomObject
+
+from aws_custom_ews_kafka_topic import COMMON_PROPS
 
 
 class KafkaTopic(AWSCustomObject):
@@ -15,13 +18,9 @@ class KafkaTopic(AWSCustomObject):
 
     resource_type = "Custom::KafkaTopic"
 
-    props = {
-        "ServiceToken": (str, True),
-        "Name": (str, True),
-        "PartitionsCount": (positive_integer, True),
-        "BootstrapServers": (str, True),
-        "ReplicationFactor": (positive_integer, False),
-        "SASLUsername": (str, False),
-        "SASLPassword": (str, False),
-        "IsConfluentKafka": (boolean, False),
-    }
+    props = deepcopy(COMMON_PROPS)
+    props.update(
+        {
+            "ServiceToken": (str, True),
+        }
+    )

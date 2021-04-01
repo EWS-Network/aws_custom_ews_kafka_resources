@@ -4,8 +4,11 @@
 
 """Definition of EWS::Kafka::Topic resource."""
 
+from copy import deepcopy
 from troposphere import AWSObject
 from troposphere.validators import positive_integer, boolean
+
+from aws_custom_ews_kafka_topic import COMMON_PROPS
 
 
 class KafkaTopic(AWSObject):
@@ -14,13 +17,4 @@ class KafkaTopic(AWSObject):
     """
 
     resource_type = "EWS::Kafka::Topic"
-
-    props = {
-        "Name": (str, True),
-        "PartitionsCount": (positive_integer, True),
-        "BootstrapServers": (str, True),
-        "ReplicationFactor": (positive_integer, False),
-        "SASLUsername": (str, False),
-        "SASLPassword": (str, False),
-        "IsConfluentKafka": (boolean, False),
-    }
+    props = deepcopy(COMMON_PROPS)
