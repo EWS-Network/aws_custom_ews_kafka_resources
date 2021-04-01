@@ -11,7 +11,7 @@ from troposphere.validators import positive_integer, boolean
 
 __author__ = """John Mille"""
 __email__ = "john@ews-network.net"
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 
 
 COMMON_PROPS = {
