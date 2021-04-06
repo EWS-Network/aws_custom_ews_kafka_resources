@@ -6,9 +6,8 @@
 
 from copy import deepcopy
 from troposphere import AWSObject
-from troposphere.validators import positive_integer, boolean
 
-from aws_custom_ews_kafka_topic import COMMON_PROPS
+from aws_custom_ews_kafka_topic import COMMON_PROPS, TOPIC_COMMON_PROPS, KafkaAclPolicy
 
 
 class KafkaTopic(AWSObject):
@@ -18,3 +17,14 @@ class KafkaTopic(AWSObject):
 
     resource_type = "EWS::Kafka::Topic"
     props = deepcopy(COMMON_PROPS)
+    props.update(TOPIC_COMMON_PROPS)
+
+
+class KafkaAcl(AWSObject):
+    """
+    Class to represent EWS::Kafka::ACL
+    """
+
+    resource_type = "EWS::Kafka::ACL"
+    props = deepcopy(COMMON_PROPS)
+    props.update({"Policies": ([KafkaAclPolicy], True)})

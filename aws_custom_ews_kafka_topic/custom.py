@@ -5,10 +5,10 @@
 """Definition of Custom::KafkaTopic."""
 
 from copy import deepcopy
-from troposphere.validators import positive_integer, boolean
+
 from troposphere.cloudformation import AWSCustomObject
 
-from aws_custom_ews_kafka_topic import COMMON_PROPS
+from aws_custom_ews_kafka_topic import COMMON_PROPS, TOPIC_COMMON_PROPS, KafkaAclPolicy
 
 
 class KafkaTopic(AWSCustomObject):
@@ -19,8 +19,19 @@ class KafkaTopic(AWSCustomObject):
     resource_type = "Custom::KafkaTopic"
 
     props = deepcopy(COMMON_PROPS)
+    props.update(TOPIC_COMMON_PROPS)
     props.update(
         {
             "ServiceToken": (str, True),
         }
     )
+
+
+class KafkaAcl(AWSCustomObject):
+    """
+    Class to represent Custom::KafkaACL
+    """
+
+    resource_type = "Custom::KafkaACL"
+    props = deepcopy(COMMON_PROPS)
+    props.update({"Policies": ([KafkaAclPolicy], True)})

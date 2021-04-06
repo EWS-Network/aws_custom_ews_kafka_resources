@@ -15,14 +15,32 @@ __version__ = "0.0.2"
 
 
 COMMON_PROPS = {
-    "Name": (str, True),
-    "PartitionsCount": (positive_integer, True),
     "BootstrapServers": (str, True),
     "ReplicationFactor": (positive_integer, False),
     "SecurityProtocol": (str, False),
     "SASLMechanism": (str, False),
     "SASLUsername": (str, False),
     "SASLPassword": (str, False),
-    "IsConfluentKafka": (boolean, False),
-    "Settings": (dict, False)
 }
+
+TOPIC_COMMON_PROPS = {
+    "Name": (str, True),
+    "PartitionsCount": (positive_integer, True),
+    "Settings": (dict, False),
+}
+
+
+class KafkaAclPolicy(AWSProperty):
+    """
+    Class to represent a policy for EWS::Kafka::ACL.Policies
+    """
+
+    props = {
+        "Resource": (str, True),
+        "PatternType": (str, False),
+        "Principal": (str, True),
+        "ResourceType": (str, True),
+        "Action": (str, True),
+        "Effect": (str, True),
+        "Host": (str, False),
+    }
