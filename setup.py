@@ -61,10 +61,10 @@ setup(
     long_description=readme,
     long_description_content_type="text/x-rst",
     include_package_data=True,
-    keywords="aws_custom_ews_kafka_topic",
-    name="aws_custom_ews_kafka_topic",
+    keywords="AWS Kafka Confluent Topic ACL",
+    name="aws_custom_ews_kafka_resources",
     packages=find_packages(
-        include=["aws_custom_ews_kafka_topic", "aws_custom_ews_kafka_topic.*"]
+        include=["aws_custom_ews_kafka_resources", "aws_custom_ews_kafka_resources.*"]
     ),
     setup_requires=setup_requirements,
     test_suite="tests",

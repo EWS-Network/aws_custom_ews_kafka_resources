@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
-"""Tests for `aws_custom_ews_kafka_topic` package."""
+"""Tests for `aws_custom_ews_kafka_resources` package."""
 
 from pytest import raises
 from troposphere import Template
 
-from aws_custom_ews_kafka_topic.resource import KafkaTopic as Resource
-from aws_custom_ews_kafka_topic.custom import KafkaTopic as Custom
+from aws_custom_ews_kafka_resources.resource import KafkaTopic as Resource
+from aws_custom_ews_kafka_resources.custom import KafkaTopic as Custom
 
 
 def test_kafka_rtopics():

@@ -7,7 +7,7 @@
 from copy import deepcopy
 from troposphere import AWSObject
 
-from aws_custom_ews_kafka_topic import COMMON_PROPS, TOPIC_COMMON_PROPS, KafkaAclPolicy
+from aws_custom_ews_kafka_resources import COMMON_PROPS, TOPIC_COMMON_PROPS, KafkaAclPolicy
 
 
 class KafkaTopic(AWSObject):
