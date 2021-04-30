@@ -61,6 +61,7 @@ class KafkaTopicSchema(CustomResource):
         "RegistryUrl": (str, True),
         "RegistryUsername": (str, False),
         "RegistryPassword": (str, False),
+        "Subject": (str, True),
         "Type": (str, True),
         "Definition": ((str, dict), True),
         "SerializeAttribute": (str, True),
