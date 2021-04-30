@@ -48,7 +48,7 @@ class KafkaAcl(AWSObject):
 
 class KafkaTopicSchema(AWSObject):
     """
-    Class to represent Custom::KafkaValueSchema
+    Class to represent EWS::Kafka::Schema
     """
 
     resource_type = "Custom::KafkaValueSchema"
