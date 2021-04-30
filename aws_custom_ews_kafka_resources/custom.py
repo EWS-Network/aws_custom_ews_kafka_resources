@@ -4,34 +4,65 @@
 
 """Definition of Custom::KafkaTopic."""
 
-from copy import deepcopy
+from troposphere.cloudformation import CustomResource
+from troposphere.validators import positive_integer
 
-from troposphere.cloudformation import AWSCustomObject
-
-from aws_custom_ews_kafka_resources import COMMON_PROPS, TOPIC_COMMON_PROPS, KafkaAclPolicy
+from aws_custom_ews_kafka_resources import KafkaAclPolicy
 
 
-class KafkaTopic(AWSCustomObject):
+class KafkaTopic(CustomResource):
     """
     Class to represent EWS::Kafka::Topic
     """
 
     resource_type = "Custom::KafkaTopic"
 
-    props = deepcopy(COMMON_PROPS)
-    props.update(TOPIC_COMMON_PROPS)
-    props.update(
-        {
-            "ServiceToken": (str, True),
-        }
-    )
+    props = {
+        "BootstrapServers": (str, True),
+        "ReplicationFactor": (positive_integer, False),
+        "SecurityProtocol": (str, False),
+        "SASLMechanism": (str, False),
+        "SASLUsername": (str, False),
+        "SASLPassword": (str, False),
+        "Name": (str, True),
+        "PartitionsCount": (positive_integer, True),
+        "Settings": (dict, False),
+        "ServiceToken": (str, True),
+    }
 
 
-class KafkaAcl(AWSCustomObject):
+class KafkaAcl(CustomResource):
     """
     Class to represent Custom::KafkaACL
     """
 
     resource_type = "Custom::KafkaACL"
-    props = deepcopy(COMMON_PROPS)
-    props.update({"Policies": ([KafkaAclPolicy], True)})
+
+    props = {
+        "BootstrapServers": (str, True),
+        "ReplicationFactor": (positive_integer, False),
+        "SecurityProtocol": (str, False),
+        "SASLMechanism": (str, False),
+        "SASLUsername": (str, False),
+        "SASLPassword": (str, False),
+        "ServiceToken": (str, True),
+        "Policies": ([KafkaAclPolicy], True),
+    }
+
+
+class KafkaTopicSchema(CustomResource):
+    """
+    Class to represent Custom::KafkaSchema
+    """
+
+    resource_type = "Custom::KafkaSchema"
+
+    props = {
+        "RegistryUrl": (str, True),
+        "RegistryUsername": (str, False),
+        "RegistryPassword": (str, False),
+        "Type": (str, True),
+        "Definition": ((str, dict), True),
+        "SerializeAttribute": (str, True),
+        "ServiceToken": (str, True),
+    }

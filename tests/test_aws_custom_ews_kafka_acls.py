@@ -6,8 +6,8 @@ from pytest import raises
 from troposphere import Template
 
 from aws_custom_ews_kafka_resources import KafkaAclPolicy
-from aws_custom_ews_kafka_resources.resource import KafkaAcl as Resource
-from aws_custom_ews_kafka_resources.custom import KafkaAcl as Custom
+from aws_custom_ews_kafka_resources import resource
+from aws_custom_ews_kafka_resources import custom
 
 
 def test_kafka_rtopics():
@@ -16,7 +16,7 @@ def test_kafka_rtopics():
     :return:
     """
     template = Template()
-    r_topic = Resource(
+    r_topic = resource.KafkaAcl(
         "ACL01",
         BootstrapServers="broker.cluster.internal",
         Policies=[
@@ -26,9 +26,9 @@ def test_kafka_rtopics():
                 Host="*",
                 Principal="User:1234",
                 Action="READ",
-                Effect="ALLOW"
+                Effect="ALLOW",
             )
-        ]
+        ],
     )
     template.add_resource(r_topic)
     template.to_json()
@@ -36,7 +36,7 @@ def test_kafka_rtopics():
 
 def test_kafka_ctopics():
     template = Template()
-    c_topic = Custom(
+    c_topic = custom.KafkaAcl(
         "newtopiccustom",
         ServiceToken="arn:aws:lambda:eu-west-1:012345678912:function:name",
         BootstrapServers="broker.cluster.internal",
@@ -47,9 +47,9 @@ def test_kafka_ctopics():
                 Host="*",
                 Principal="User:1234",
                 Action="READ",
-                Effect="ALLOW"
+                Effect="ALLOW",
             )
-        ]
+        ],
     )
     template.add_resource(c_topic)
     template.to_json()
