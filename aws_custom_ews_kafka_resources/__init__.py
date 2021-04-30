@@ -8,7 +8,7 @@ from troposphere import AWSProperty
 
 __author__ = """John Mille"""
 __email__ = "john@ews-network.net"
-__version__ = "0.0.6"
+__version__ = "0.0.7"
 
 
 class KafkaAclPolicy(AWSProperty):
