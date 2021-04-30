@@ -28,4 +28,4 @@ src = "setup.py"
 src = "setup.cfg"
 
 [[tool.tbump.file]]
-src = "aws_custom_ews_kafka_topic/__init__.py"
+src = "aws_custom_ews_kafka_resources/__init__.py"
