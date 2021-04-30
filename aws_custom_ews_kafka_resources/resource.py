@@ -51,7 +51,7 @@ class KafkaTopicSchema(AWSObject):
     Class to represent EWS::Kafka::Schema
     """
 
-    resource_type = "Custom::KafkaValueSchema"
+    resource_type = "EWS::Kafka::Schema"
     props = {
         "RegistryUrl": (str, True),
         "RegistryUsername": (str, False),
