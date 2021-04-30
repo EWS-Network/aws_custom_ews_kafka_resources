@@ -20,6 +20,7 @@ def test_kafka_r_schema_value():
         "newtopicschema",
         RegistryUrl="http://registry.lan:8080",
         SerializeAttribute="key",
+        CompatibilityMode="NONE",
         Type="AVRO",
         Definition={
             "name": "abcd",
@@ -43,6 +44,7 @@ def test_kafka_r_schema_value_string_def():
         RegistryUrl="http://registry.lan:8080",
         Type="AVRO",
         SerializeAttribute="value",
+        CompatibilityMode="backward",
         Definition=json.dumps(
             {
                 "name": "abcd",
@@ -66,6 +68,7 @@ def test_kafka_c_schema_value_string_def():
         "newtopicschema",
         ServiceToken="somelambda",
         RegistryUrl="http://registry.lan:8080",
+        CompatibilityMode="forward",
         Type="AVRO",
         SerializeAttribute="value",
         Definition=json.dumps(

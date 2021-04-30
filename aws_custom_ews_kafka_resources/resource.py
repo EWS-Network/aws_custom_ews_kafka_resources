@@ -59,4 +59,5 @@ class KafkaTopicSchema(AWSObject):
         "Type": (str, True),
         "Definition": ((str, dict), True),
         "SerializeAttribute": (str, True),
+        "CompatibilityMode": (str, True),
     }

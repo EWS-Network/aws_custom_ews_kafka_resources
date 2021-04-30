@@ -64,5 +64,6 @@ class KafkaTopicSchema(CustomResource):
         "Type": (str, True),
         "Definition": ((str, dict), True),
         "SerializeAttribute": (str, True),
+        "CompatibilityMode": (str, True),
         "ServiceToken": (str, True),
     }
