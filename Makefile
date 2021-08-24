@@ -74,12 +74,22 @@ servedocs: docs ## compile the docs watching for changes
 	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
 
 release: dist ## package and upload a release
-	twine upload dist/*
+	twine check dist/*
+	poetry publish --build
+
+release-test: dist ## package and upload a release
+	twine check dist/* || echo Failed to validate release
+	poetry config repositories.pypitest https://test.pypi.org/legacy/
+	poetry publish -r pypitest --build
 
 dist: clean ## builds source and wheel package
-	python setup.py sdist
-	python setup.py bdist_wheel
+	poetry build
 	ls -l dist
 
 install: clean ## install the package to the active Python's site-packages
-	python setup.py install
+	pip install . --use-pep517 --use-feature=in-tree-build
+
+conform	: ## Conform to a standard of coding syntax
+	isort --profile black aws_custom_ews_kafka_resources
+	black aws_custom_ews_kafka_resources tests
+	find aws_custom_ews_kafka_resources -name "*.json" -type f  -exec sed -i '1s/^\xEF\xBB\xBF//' {} +
