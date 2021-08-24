@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "aws_custom_ews_kafka_resources"
-version = "0.1.0"
+version = "0.2.0"
 description = "Custom Resources for AWS CloudFormation representing Kafka assets management"
 authors = ["John Preston <john@ews-network.net>"]
 license = "MPL-2.0"
@@ -48,7 +48,7 @@ twine = "^3.4.2"
 github_url = "https://github.com/EWS-Network/aws_custom_ews_kafka_resources.git"
 
 [tool.tbump.version]
-current = "0.1.0"
+current = "0.2.0"
 
 # Example of a semver regexp.
 # Make sure this matches current_version before
